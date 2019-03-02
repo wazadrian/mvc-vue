@@ -3,5 +3,15 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
+<h3>VueJS in ASP.NET MVC 5</h3>
+<div id="message-box">
+    {{ message }}
+</div>
+<script>
+    var index = new Vue({
+        el: '#message-box',
+        data: {
+            message: 'Hello Vue!'
+        }
+    });
+</script>
