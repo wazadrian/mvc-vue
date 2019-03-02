@@ -3,24 +3,42 @@
     data: {
         loading: true,
         error: false,
-        products: [
-            { name: 'pr_1', image: 'img', pdfUrl1: 'pdfUrl1', pdfUrl2: 'pdfurl2' },
-            { name: 'pr_2', image: 'img', pdfUrl1: 'pdfUrl1', pdfUrl2: 'pdfurl2' },
-            { name: 'pr_3', image: 'img', pdfUrl1: 'pdfUrl1', pdfUrl2: 'pdfurl2' },
-            { name: 'pr_4', image: 'img', pdfUrl1: 'pdfUrl1', pdfUrl2: 'pdfurl2' },
-            { name: 'pr_5_', image: 'img', pdfUrl1: 'pdfUrl1', pdfUrl2: 'pdfurl2' }
-        ]
+        products: [],
+        productsToShow: [],
+        searchInput: '',
+        category: '',
+        showItems: false,
+        f1: false,
+        f2: false,
+        f3: false
     },
-    mounted () {
+    mounted() {
        axios.get('/products/getproducts')
            .then(response => {
                this.products = response.data;
-               console.log(this.products);
+               this.productsToShow = response.data;
+               console.log(response.data);
             })
             .catch(error => {
                 console.log(error);
                 this.error = true;
             })
             .finally(() => this.loading = false);
-  }
+    },
+    watch: {
+        searchInput: function (val) {
+            console.log('searchInput');
+            this.productsToShow = this.products.filter((product) => {
+                return product.Name.toLowerCase().match(val.toLowerCase());
+            });
+        },
+        category: function (val) {
+            console.log('category');
+            this.showItems = true;
+            this.productsToShow = this.products.filter((product) => {
+                return product.Category.toLowerCase().match(val.toLowerCase());
+            });
+        }
+
+    }
 });

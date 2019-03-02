@@ -1,11 +1,24 @@
 ﻿<h2>Products</h2>
 
 <main id="products">
-    <ul v-for="product in products">
-        <li>
-            {{product.Name}}
-        </li>
-    </ul>
+    <input type="radio" id="mouse" value="mouse" v-model="category">
+    <label for="mouse">mouse</label>
+    <input type="radio" id="keyboard" value="keyboard" v-model="category">
+    <label for="keyboard">keyboard</label>
+    <input type="radio" id="bag" value="bag" v-model="category">
+    <label for="bag">bag</label>
+    <br />
+    {{category}}
+    <div v-if="showItems">
+        <input v-model="searchInput" placeholder="edit me">
+        <ul class="list-group" v-for="product in productsToShow">
+            <li class="list-group-item">
+                <img :src="product.Image" />
+                {{product.Name}}
+            </li>
+        </ul>
+
+    </div>
 </main>
 
 @Scripts.Render("~/Scripts/products.js")
