@@ -1,0 +1,18 @@
+﻿@model mvc_vue_ts.Models.ProductModel
+<h2>Product</h2>
+
+<main id="products">
+
+
+
+    <input id="search-input" />
+
+    <div class="list-group-item" data-name="@Model.Name" data-category="@Model.Category">
+        <img src="@Model.Image" />
+        @Model.Name
+    </div>
+
+
+</main>
+
+@Scripts.Render("~/Scripts/productsjq.js")

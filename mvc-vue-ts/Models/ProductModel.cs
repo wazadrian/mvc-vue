@@ -7,6 +7,7 @@ namespace mvc_vue_ts.Models
 {
     public class ProductModel
     {
+        public string Id { get; set; }
         public string Name { get; set; }
         public string Image { get; set; }
         public string UrlPdf1 { get; set; }
@@ -17,8 +18,9 @@ namespace mvc_vue_ts.Models
         public string F3 { get; set; }
 
 
-        public ProductModel(string name, string image, string urlPdf1, string urlPdf2, string category, string f1, string f2, string f3)
+        public ProductModel(string id, string name, string image, string urlPdf1, string urlPdf2, string category, string f1, string f2, string f3)
         {
+            Id = id;
             Name = name;
             Image = image;
             UrlPdf1 = urlPdf1;

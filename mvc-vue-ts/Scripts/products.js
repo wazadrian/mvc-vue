@@ -8,11 +8,8 @@
         searchInput: '',
         category: '',
         showItems: false,
-        f1: false,
-        f2: false,
-        f3: false
     },
-    mounted() {
+    mounted: function() {
        axios.get('/products/getproducts')
            .then(response => {
                this.products = response.data;
@@ -34,11 +31,18 @@
         },
         category: function (val) {
             console.log('category');
+            window.history.pushState(null, null, '/products/' + val);
             this.showItems = true;
             this.productsToShow = this.products.filter((product) => {
                 return product.Category.toLowerCase().match(val.toLowerCase());
             });
         }
 
-    }
+    },
+    created() {
+        // Attach onpopstate event handler
+        window.onpopstate = function (event) {
+            alert("location: " + document.location + ", state: " + JSON.stringify(event));
+        };
+    },
 });
