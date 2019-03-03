@@ -20,11 +20,12 @@
             var index = 0;
             foreach (var product in Model)
             {
-                <li id="@index" class="list-group-item" data-name="@product.Name" data-category="@product.Category">
-                    <img src="@product.Image" />
-                    @product.Name
-                    <a href=@("product/" + product.Id)> product page</a>
-                </li>
+        <li id="@index" class="list-group-item" data-name="@product.Name" data-category="@product.Category">
+            <img src="@product.Image" />
+            @product.Name
+            <a href=@("product/" + product.Id)> product page</a>
+            @Html.ActionLink("Prod", "Product", "ProductsJq", new {id = product.Id, data = "sss" } , null)
+        </li>
                 index++;
             }
         }
